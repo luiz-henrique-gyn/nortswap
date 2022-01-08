@@ -13,10 +13,10 @@
     {
       "name": "Nort Token",
       "symbol": "NT",
-      "address": "0xe1546f48CbAEd8B15fB1141C404c5eEbE2478A7d",
+      "address": "0xA752dF1dE29CdDbA6f1142db2a75d407092CCE4b",
       "chainId": 56,
       "decimals": 18,
-      "logoURI": "http://localhost:3000/images/tokens/0xe1546f48CbAEd8B15fB1141C404c5eEbE2478A7d.png"
+      "logoURI": "http://nortswap.finance/images/tokens/0xA752dF1dE29CdDbA6f1142db2a75d407092CCE4b.png"
     } 
  
   ]

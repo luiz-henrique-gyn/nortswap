@@ -41,7 +41,7 @@ export const mainnetTokens = {
   ),
   nort: new Token(
     MAINNET,
-    '0xe1546f48CbAEd8B15fB1141C404c5eEbE2478A7d',
+    '0xA752dF1dE29CdDbA6f1142db2a75d407092CCE4b',
     18,
     'NT',
     'Nort Token',
