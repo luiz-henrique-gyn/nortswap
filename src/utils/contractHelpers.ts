@@ -107,7 +107,7 @@ export const getCakeContract = (signer?: ethers.Signer | ethers.providers.Provid
   return getContract(cakeAbi, tokens.cake.address, signer)
 }
 export const getNortContract = (signer?: ethers.Signer | ethers.providers.Provider) => {
-  return getContract(nortAbi, tokens.nort.address, signer)
+  return getContract(nortAbi, tokens.nt.address, signer)
 }
 export const getLockerContract = (signer?: ethers.Signer | ethers.providers.Provider) => {
   return getContract(lockerAbi, getLockerAddress(), signer)

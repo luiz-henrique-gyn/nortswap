@@ -39,7 +39,7 @@ export const mainnetTokens = {
     'SyrupBar Token',
     'https://pancakeswap.finance/',
   ),
-  nort: new Token(
+  nt: new Token(
     MAINNET,
     '0xA752dF1dE29CdDbA6f1142db2a75d407092CCE4b',
     18,
@@ -130,9 +130,9 @@ export const testnetTokens = {
     'PancakeSwap Token',
     'https://pancakeswap.finance/',
   ),
-  nort: new Token(
+  nt: new Token(
     TESTNET,
-    '0x5884e9163bafa808cbfab9759f5457beb79027c1',
+    '0x5884e9163baFA808cBfaB9759f5457beb79027C1',
     18,
     'NT',
     'Nort Token',

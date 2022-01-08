@@ -44,7 +44,7 @@ const Grid = styled.div`
 const CakeDataRow = () => {
   const { t } = useTranslation()
   const totalSupply = useTotalSupply()
-  const burnedBalance = getBalanceNumber(useBurnedBalance(tokens.nort.address))
+  const burnedBalance = getBalanceNumber(useBurnedBalance(tokens.nt.address))
   const cakeSupply = totalSupply ? getBalanceNumber(totalSupply) - burnedBalance : 0
   const cakePriceBusd = usePriceCakeBusd()
   const mcap = cakePriceBusd.times(cakeSupply)
