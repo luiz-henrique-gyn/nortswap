@@ -1,0 +1,23 @@
+{
+  "name": "PancakeSwap Default List",
+  "timestamp": "2021-05-06T00:00:00Z",
+  "version": {
+    "major": 3,
+    "minor": 0,
+    "patch": 0
+  },
+  "tags": {},
+  "logoURI": "https://pancakeswap.finance/logo.png",
+  "keywords": ["pancake", "default"],
+  "tokens": [
+    {
+      "name": "Nort Token",
+      "symbol": "NT",
+      "address": "0xe1546f48CbAEd8B15fB1141C404c5eEbE2478A7d",
+      "chainId": 56,
+      "decimals": 18,
+      "logoURI": "http://localhost:3000/images/tokens/0xe1546f48CbAEd8B15fB1141C404c5eEbE2478A7d.png"
+    } 
+ 
+  ]
+}
