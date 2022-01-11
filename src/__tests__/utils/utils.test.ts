@@ -25,7 +25,7 @@ describe('getActiveMenuItem', () => {
     // Then
     expect(result).toEqual(menuConfig(mockT)[1])
   })
- 
+
   it('should return undefined if item is not found', () => {
     // Given
     const pathname = '/corgi'

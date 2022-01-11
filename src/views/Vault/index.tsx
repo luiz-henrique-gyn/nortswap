@@ -299,9 +299,9 @@ const Pools: React.FC = () => {
                 <>
                   <Text color="text">{t('Your indication link:')}</Text>
                   <LinkExternal
-                    href={`https://nortswap.finance/vaults?i=${account}`}
+                    href={`https://nortswap.finance/vault?i=${account}`}
                     bold={false}
-                    fontSize="14px"
+                    fontSize="15px"
                     color={theme.isDark ? 'secondary' : 'primary'}
                   >
                     Link

@@ -102,6 +102,9 @@ const App: React.FC = () => {
             <Route path="/syrup">
               <Redirect to="/pools" />
             </Route>
+            <Route path="/vaults">
+              <Redirect to="/vault" />
+            </Route>
 
             {/* 404 */}
             <Route component={NotFound} />
