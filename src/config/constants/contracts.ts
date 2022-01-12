@@ -56,7 +56,7 @@ export default {
     97: '',
   },
   nortVault: {
-    56: '0x08c555e8B4A6aA6548A1be57b65705ba7471540E',
+    56: '0x27b39666D1af8A5E0E14Bc8CA35ACa83a1710132',
     97: '0x08c555e8B4A6aA6548A1be57b65705ba7471540E',
   },
   predictions: {
