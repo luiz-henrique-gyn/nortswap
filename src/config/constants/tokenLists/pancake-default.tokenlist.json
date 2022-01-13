@@ -17,6 +17,20 @@
       "chainId": 56,
       "decimals": 18,
       "logoURI": "http://nortswap.finance/images/tokens/0xA752dF1dE29CdDbA6f1142db2a75d407092CCE4b.png"
+    }, {
+      "name": "Binance BUSD",
+      "symbol": "BUSD",
+      "address": "0xe9e7CEA3DedcA5984780Bafc599bD69ADd087D56",
+      "chainId": 56,
+      "decimals": 18,
+      "logoURI": "http://nortswap.finance/images/tokens/0xe9e7CEA3DedcA5984780Bafc599bD69ADd087D56.png"
+    } , {
+      "name": "Tether USD",
+      "symbol": "USDT",
+      "address": "0x55d398326f99059fF775485246999027B3197955",
+      "chainId": 56,
+      "decimals": 18,
+      "logoURI": "http://nortswap.finance/images/tokens/0x55d398326f99059fF775485246999027B3197955.png"
     } 
  
   ]

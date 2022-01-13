@@ -44,9 +44,9 @@ const useHarvestPool = (sousId, isUsingBnb = false, isVault = false) => {
       await harvestFarm(masterChefContract, 0)
     } else if (isUsingBnb) {
       await harvestPoolBnb(sousChefContract)
-    } else if (isVault){
+    } else if (isVault) {
       await harvestVault(sousChefContract)
-    }else {
+    } else {
       await harvestPool(sousChefContract)
     }
     dispatch(updateUserPendingReward(sousId, account))
