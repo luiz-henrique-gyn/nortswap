@@ -137,7 +137,7 @@ const ActionPanel: React.FC<ActionPanelProps> = ({ account, pool, userDataLoaded
   const cakeVaultContractAddress = getCakeVaultAddress()
   const { currentBlock } = useBlock()
   const { isXs, isSm, isMd } = breakpoints
-
+  const isVault = !!pool.lockupPeriod
   const { shouldShowBlockCountdown, blocksUntilStart, blocksRemaining, hasPoolStarted, blocksToDisplay } =
     getPoolBlockInfo(pool, currentBlock)
 
@@ -230,6 +230,13 @@ const ActionPanel: React.FC<ActionPanelProps> = ({ account, pool, userDataLoaded
     </Flex>
   )
 
+  const lockupRow = (
+    <Flex justifyContent="space-between" alignItems="center" mb="8px">
+      <Text>{t('Lockup')}:</Text>
+      <Text>{pool.lockupPeriod}</Text>
+    </Flex>
+  )
+
   const totalStakedRow = (
     <Flex justifyContent="space-between" alignItems="center" mb="8px">
       <Text maxWidth={['50px', '100%']}>{t('Total staked')}:</Text>
@@ -254,6 +261,7 @@ const ActionPanel: React.FC<ActionPanelProps> = ({ account, pool, userDataLoaded
       <InfoSection>
         {maxStakeRow}
         {(isXs || isSm) && aprRow}
+        {(isXs || isSm) && lockupRow}
         {(isXs || isSm || isMd) && totalStakedRow}
         {shouldShowBlockCountdown && blocksRow}
         <Flex mb="8px" justifyContent={['flex-end', 'flex-end', 'flex-start']}>
@@ -301,7 +309,7 @@ const ActionPanel: React.FC<ActionPanelProps> = ({ account, pool, userDataLoaded
           {pool.isAutoVault ? (
             <AutoHarvest {...pool} userDataLoaded={userDataLoaded} />
           ) : (
-            <Harvest {...pool} userDataLoaded={userDataLoaded} />
+            <Harvest {...pool} userDataLoaded={userDataLoaded} isVault={isVault} />
           )}
           <Stake pool={pool} userDataLoaded={userDataLoaded} />
         </ActionContainer>

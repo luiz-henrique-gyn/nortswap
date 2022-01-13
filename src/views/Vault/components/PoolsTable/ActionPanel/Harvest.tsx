@@ -14,6 +14,7 @@ import CollectModal from '../../PoolCard/Modals/CollectModal'
 
 interface HarvestActionProps extends DeserializedPool {
   userDataLoaded: boolean
+  isVault?: boolean
 }
 
 const HarvestAction: React.FunctionComponent<HarvestActionProps> = ({
@@ -23,6 +24,7 @@ const HarvestAction: React.FunctionComponent<HarvestActionProps> = ({
   userData,
   userDataLoaded,
   earningTokenPrice,
+  isVault = false,
 }) => {
   const { t } = useTranslation()
   const { account } = useWeb3React()
@@ -43,6 +45,7 @@ const HarvestAction: React.FunctionComponent<HarvestActionProps> = ({
       earningToken={earningToken}
       earningsDollarValue={earningTokenDollarBalance}
       sousId={sousId}
+      isVault={isVault}
       isBnbPool={isBnbPool}
       isCompoundPool={isCompoundPool}
     />,

@@ -16,7 +16,12 @@ const PoolCard: React.FC<{ pool: DeserializedPool; account: string }> = ({ pool,
   const { t } = useTranslation()
   const stakedBalance = userData?.stakedBalance ? new BigNumber(userData.stakedBalance) : BIG_ZERO
   const accountHasStakedBalance = stakedBalance.gt(0)
-
+  const lockupRow = (
+    <Flex justifyContent="space-between" alignItems="center" mb="8px">
+      <Text>{t('Lockup')}:</Text>
+      <Text>{pool.lockupPeriod}</Text>
+    </Flex>
+  )
   return (
     <StyledCard
       isFinished={isFinished && sousId !== 0}
@@ -30,6 +35,7 @@ const PoolCard: React.FC<{ pool: DeserializedPool; account: string }> = ({ pool,
       />
       <CardBody>
         <AprRow pool={pool} stakedBalance={stakedBalance} />
+        {lockupRow}
         <Flex mt="24px" flexDirection="column">
           {account ? (
             <CardActions pool={pool} stakedBalance={stakedBalance} />
