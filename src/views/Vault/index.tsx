@@ -291,9 +291,9 @@ const Pools: React.FC = () => {
           >
             <InfoLayout>
               <Heading scale="md" color="secondary">
-                {t('Rewards Program')}
+                {t('Referral Program')}
               </Heading>
-              <Text color="text">{t('Win even more NT indicating Nort Vaults to new users!')}</Text>
+              <Text color="text">{t('Win even more NT referring Nort Vaults to new users!')}</Text>
               <Text color="text">{t('Each Vault has a referral reward based in your clients total stacked.')}</Text>
               {account && (
                 <>
@@ -301,7 +301,7 @@ const Pools: React.FC = () => {
                   <LinkExternal
                     href={`https://nortswap.finance/vault?i=${account}`}
                     bold={false}
-                    fontSize="15px"
+                    fontSize="18px"
                     color={theme.isDark ? 'secondary' : 'primary'}
                   >
                     Link
@@ -310,7 +310,9 @@ const Pools: React.FC = () => {
               )}
               {!account && (
                 <>
-                  <Text color={theme.isDark ? 'secondary' : 'primary'}>{t('Connect your wallet to get a link!')}</Text>
+                  <Text color={theme.isDark ? 'secondary' : 'primary'} fontSize="22px">
+                    {t('Connect your wallet to get your referral link!')}
+                  </Text>
                 </>
               )}
             </InfoLayout>

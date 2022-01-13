@@ -145,6 +145,15 @@ const Locker = () => {
                       onChange={handleChange}
                     />
                     {formErrors.name && fieldsState.name && <FormErrors errors={formErrors.name} />}
+                    <Button
+                      type="button"
+                      width="100%"
+                      isLoading={isLoading}
+                      endIcon={isLoading ? <AutoRenewIcon spin color="currentColor" /> : null}
+                      mt="16px"
+                    >
+                      {t('Search')}
+                    </Button>
                   </Box>
                 </CardBody>
               </Card>
