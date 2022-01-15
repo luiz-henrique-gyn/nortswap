@@ -41,12 +41,11 @@ export const fetchPoolsBlockLimits = async () => {
 export const fetchPoolsTotalStaking = async () => {
   const nonBnbPools = poolsConfig.filter((p) => p.stakingToken.symbol !== 'BNB')
   const bnbPool = poolsConfig.filter((p) => p.stakingToken.symbol === 'BNB')
-
+  const chainId = process.env.REACT_APP_CHAIN_ID
   const callsNonBnbPools = nonBnbPools.map((poolConfig) => {
     return {
-      address: poolConfig.stakingToken.address,
-      name: 'balanceOf',
-      params: [getAddress(poolConfig.contractAddress)],
+      address: poolConfig.contractAddress[chainId],
+      name: 'totalStaked',
     }
   })
 
