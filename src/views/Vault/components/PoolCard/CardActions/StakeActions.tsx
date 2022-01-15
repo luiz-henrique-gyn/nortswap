@@ -7,6 +7,7 @@ import { DeserializedPool } from 'state/types'
 import Balance from 'components/Balance'
 import useParsedQueryString from 'hooks/useParsedQueryString'
 import { isAddress } from 'ethers/lib/utils'
+import { useBlock } from 'state/block/hooks'
 import NotEnoughTokensModal from '../Modals/NotEnoughTokensModal'
 import StakeModal from '../Modals/StakeModal'
 
@@ -27,13 +28,15 @@ const StakeAction: React.FC<StakeActionsProps> = ({
   isStaked,
   isLoading = false,
 }) => {
-  const { stakingToken, stakingTokenPrice, stakingLimit, isFinished, userData } = pool
+  const { stakingToken, stakingTokenPrice, stakingLimit, isFinished, userData, endBlock } = pool
   const { t } = useTranslation()
   const stakedTokenBalance = getBalanceNumber(stakedBalance, stakingToken.decimals)
   const stakedTokenDollarBalance = getBalanceNumber(
     stakedBalance.multipliedBy(stakingTokenPrice),
     stakingToken.decimals,
   )
+  const { currentBlock } = useBlock()
+  const canHarvest = currentBlock > endBlock
   const parsedQs = useParsedQueryString()
   const isValid = isAddress(parsedQs.i as string)
 
@@ -87,7 +90,7 @@ const StakeAction: React.FC<StakeActionsProps> = ({
           </>
         </Flex>
         <Flex>
-          <IconButton variant="secondary" onClick={onPresentUnstake} mr="6px">
+          <IconButton variant="secondary" onClick={onPresentUnstake} mr="6px" disabled={!canHarvest}>
             <MinusIcon color="primary" width="24px" />
           </IconButton>
           {reachStakingLimit ? (

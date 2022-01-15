@@ -15,6 +15,7 @@ import { useERC20 } from 'hooks/useContract'
 import { convertSharesToCake } from 'views/Pools/helpers'
 import { isAddress } from 'ethers/lib/utils'
 import useParsedQueryString from 'hooks/useParsedQueryString'
+import { useBlock } from 'state/block/hooks'
 import { ActionContainer, ActionTitles, ActionContent } from './styles'
 import NotEnoughTokensModal from '../../PoolCard/Modals/NotEnoughTokensModal'
 import StakeModal from '../../PoolCard/Modals/StakeModal'
@@ -41,10 +42,12 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({ pool, userDataLoa
     userData,
     stakingTokenPrice,
     isAutoVault,
+    endBlock,
   } = pool
   const { t } = useTranslation()
   const { account } = useWeb3React()
-
+  const { currentBlock } = useBlock()
+  const canHarvest = currentBlock > endBlock
   const stakingTokenContract = useERC20(stakingToken.address || '')
   const { handleApprove: handlePoolApprove, requestedApproval: requestedPoolApproval } = useApprovePool(
     stakingTokenContract,
@@ -215,7 +218,7 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({ pool, userDataLoa
             />
           </Flex>
           <IconButtonWrapper>
-            <IconButton variant="secondary" onClick={onUnstake} mr="6px">
+            <IconButton variant="secondary" onClick={onUnstake} mr="6px" disabled={!canHarvest}>
               <MinusIcon color="primary" width="14px" />
             </IconButton>
             {reachStakingLimit ? (
