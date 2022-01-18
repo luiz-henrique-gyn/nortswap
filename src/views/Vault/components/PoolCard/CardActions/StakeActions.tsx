@@ -5,9 +5,8 @@ import { useTranslation } from 'contexts/Localization'
 import { getBalanceNumber } from 'utils/formatBalance'
 import { DeserializedPool } from 'state/types'
 import Balance from 'components/Balance'
-import useParsedQueryString from 'hooks/useParsedQueryString'
-import { isAddress } from 'ethers/lib/utils'
 import { useBlock } from 'state/block/hooks'
+import useReferral from 'views/Vault/hooks/useReferral'
 import NotEnoughTokensModal from '../Modals/NotEnoughTokensModal'
 import StakeModal from '../Modals/StakeModal'
 
@@ -30,6 +29,7 @@ const StakeAction: React.FC<StakeActionsProps> = ({
 }) => {
   const { stakingToken, stakingTokenPrice, stakingLimit, isFinished, userData, endBlock } = pool
   const { t } = useTranslation()
+  const { referralAddress } = useReferral()
   const stakedTokenBalance = getBalanceNumber(stakedBalance, stakingToken.decimals)
   const stakedTokenDollarBalance = getBalanceNumber(
     stakedBalance.multipliedBy(stakingTokenPrice),
@@ -37,16 +37,13 @@ const StakeAction: React.FC<StakeActionsProps> = ({
   )
   const { currentBlock } = useBlock()
   const canHarvest = currentBlock > endBlock
-  const parsedQs = useParsedQueryString()
-  const isValid = isAddress(parsedQs.i as string)
-
   const [onPresentTokenRequired] = useModal(<NotEnoughTokensModal tokenSymbol={stakingToken.symbol} />)
 
   const [onPresentStake] = useModal(
     <StakeModal
       isBnbPool={isBnbPool}
       pool={pool}
-      indicationAddress={isValid && (parsedQs.i as string)}
+      indicationAddress={referralAddress}
       stakingTokenBalance={stakingTokenBalance}
       stakingTokenPrice={stakingTokenPrice}
     />,

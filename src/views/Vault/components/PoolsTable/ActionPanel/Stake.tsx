@@ -13,9 +13,8 @@ import { PoolCategory } from 'config/constants/types'
 import { BIG_ZERO } from 'utils/bigNumber'
 import { useERC20 } from 'hooks/useContract'
 import { convertSharesToCake } from 'views/Pools/helpers'
-import { isAddress } from 'ethers/lib/utils'
-import useParsedQueryString from 'hooks/useParsedQueryString'
 import { useBlock } from 'state/block/hooks'
+import useReferral from 'views/Vault/hooks/useReferral'
 import { ActionContainer, ActionTitles, ActionContent } from './styles'
 import NotEnoughTokensModal from '../../PoolCard/Modals/NotEnoughTokensModal'
 import StakeModal from '../../PoolCard/Modals/StakeModal'
@@ -46,6 +45,7 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({ pool, userDataLoa
   } = pool
   const { t } = useTranslation()
   const { account } = useWeb3React()
+  const { referralAddress } = useReferral()
   const { currentBlock } = useBlock()
   const canHarvest = currentBlock > endBlock
   const stakingTokenContract = useERC20(stakingToken.address || '')
@@ -87,16 +87,13 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({ pool, userDataLoa
 
   const needsApproval = isAutoVault ? !isVaultApproved : !allowance.gt(0) && !isBnbPool
 
-  const parsedQs = useParsedQueryString()
-  const isValid = isAddress(parsedQs.i as string)
-
   const [onPresentTokenRequired] = useModal(<NotEnoughTokensModal tokenSymbol={stakingToken.symbol} />)
 
   const [onPresentStake] = useModal(
     <StakeModal
       isBnbPool={isBnbPool}
       pool={pool}
-      indicationAddress={isValid && (parsedQs.i as string)}
+      indicationAddress={referralAddress}
       stakingTokenBalance={stakingTokenBalance}
       stakingTokenPrice={stakingTokenPrice}
     />,

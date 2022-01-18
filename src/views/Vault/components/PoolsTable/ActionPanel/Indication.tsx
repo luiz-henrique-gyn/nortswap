@@ -1,10 +1,9 @@
 import React from 'react'
 import { Text } from '@allnext/uikit'
 import { useTranslation } from 'contexts/Localization'
-import useParsedQueryString from 'hooks/useParsedQueryString'
 import styled from 'styled-components'
 import truncateHash from 'utils/truncateHash'
-import { isAddress } from 'ethers/lib/utils'
+import useReferral from 'views/Vault/hooks/useReferral'
 
 const Container = styled.div`
   display: flex;
@@ -24,22 +23,15 @@ const Container = styled.div`
 
 const Indication: React.FunctionComponent = () => {
   const { t } = useTranslation()
-  const parsedQs = useParsedQueryString()
-  if (!parsedQs.i) return <></>
-  const isValid = isAddress(parsedQs.i as string)
+  const { referralAddress } = useReferral()
   return (
     <Container>
       <Text fontSize="12px" bold color="secondary" as="span" textTransform="uppercase">
         {t('Indicator Address')}:
       </Text>
-      {isValid && (
+      {referralAddress && (
         <Text fontSize="12px" bold color="primary" as="p" textTransform="uppercase" ml="12px">
-          {truncateHash(parsedQs.i as string)}
-        </Text>
-      )}
-      {!isValid && (
-        <Text fontSize="12px" bold color="primary" as="p" textTransform="uppercase" ml="12px">
-          {t('Invalid Address')}
+          {truncateHash(referralAddress)}
         </Text>
       )}
     </Container>
