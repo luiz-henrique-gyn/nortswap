@@ -151,7 +151,7 @@ const ExpandedFooter: React.FC<ExpandedFooterProps> = ({ pool, account }) => {
         </Flex>
       )}
       <Flex mb="2px" justifyContent="flex-end">
-        <LinkExternal href={`/info/token/${earningToken.address}`} bold={false} small>
+        <LinkExternal href={`${BASE_BSC_SCAN_URL}/token/${stakingToken.address}`} bold={false} small>
           {t('See Token Info')}
         </LinkExternal>
       </Flex>

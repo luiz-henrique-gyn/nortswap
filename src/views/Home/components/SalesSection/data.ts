@@ -29,7 +29,7 @@ export const earnSectionData: SalesSectionProps = {
   bodyText: 'NortSwap makes it easy to make your crypto work for you. Call your friends and earn rewards!',
   reverse: true,
   primaryButton: {
-    to: '/farms',
+    to: '/vaults',
     text: 'Explore',
     external: false,
   },

@@ -27,7 +27,7 @@ const Indication: React.FunctionComponent = () => {
   return (
     <Container>
       <Text fontSize="12px" bold color="secondary" as="span" textTransform="uppercase">
-        {t('Indicator Address')}:
+        {t('Referral Address')}:
       </Text>
       {referralAddress && (
         <Text fontSize="12px" bold color="primary" as="p" textTransform="uppercase" ml="12px">

@@ -253,7 +253,7 @@ const ActionPanel: React.FC<ActionPanelProps> = ({ account, pool, userDataLoaded
         {shouldShowBlockCountdown && blocksRow}
         <Flex mb="8px" justifyContent={['flex-end', 'flex-end', 'flex-start']}>
           <LinkExternal
-            href={`/info/token/${earningToken.address}`}
+            href={`${BASE_BSC_SCAN_URL}/token/${stakingToken.address}`}
             bold={false}
             color={theme.isDark ? 'white' : 'primary'}
           >
