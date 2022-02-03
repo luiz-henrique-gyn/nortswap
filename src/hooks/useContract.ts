@@ -148,9 +148,9 @@ export const useCakeVaultContract = () => {
   const { library } = useActiveWeb3React()
   return useMemo(() => getCakeVaultContract(library.getSigner()), [library])
 }
-export const useNortVaultContract = () => {
+export const useNortVaultContract = (id) => {
   const { library } = useActiveWeb3React()
-  return useMemo(() => getNortVaultContract(library.getSigner()), [library])
+  return useMemo(() => getNortVaultContract(id, library.getSigner()), [id, library])
 }
 
 export const usePredictionsContract = () => {

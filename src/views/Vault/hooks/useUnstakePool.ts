@@ -2,7 +2,7 @@ import { useCallback } from 'react'
 import { useWeb3React } from '@web3-react/core'
 import { parseUnits } from 'ethers/lib/utils'
 import { useAppDispatch } from 'state'
-import { updateUserStakedBalance, updateUserBalance, updateUserPendingReward } from 'state/actions'
+import { updateUserStakedBalance, updateUserBalance, updateUserPendingReward, updateUserEarnedRewardsBalance } from 'state/actions'
 import { unstakeFarm } from 'utils/calls'
 import { useMasterchef, useSousChef } from 'hooks/useContract'
 import getGasPrice from 'utils/getGasPrice'
@@ -43,6 +43,7 @@ const useUnstakePool = (sousId: number, enableEmergencyWithdraw = false) => {
       dispatch(updateUserStakedBalance(sousId, account))
       dispatch(updateUserBalance(sousId, account))
       dispatch(updateUserPendingReward(sousId, account))
+      dispatch(updateUserEarnedRewardsBalance(sousId, account))
     },
     [account, dispatch, enableEmergencyWithdraw, masterChefContract, sousChefContract, sousId],
   )

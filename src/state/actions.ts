@@ -9,6 +9,7 @@ export {
   updateUserBalance,
   updateUserPendingReward,
   updateUserStakedBalance,
+  updateUserEarnedRewardsBalance,
 } from './pools'
 export { fetchStart, teamFetchSucceeded, fetchFailed, teamsFetchSucceeded } from './teams'
 export { setBlock } from './block'

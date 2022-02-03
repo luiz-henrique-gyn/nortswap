@@ -29,8 +29,7 @@ import {
   getNftMarketAddress,
   getNftSaleAddress,
   getPancakeSquadAddress,
-  getLockerAddress,
-  getNortVaultAddress,
+  getLockerAddress, 
 } from 'utils/addressHelpers'
 
 // ABI
@@ -142,8 +141,9 @@ export const getEasterNftContract = (signer?: ethers.Signer | ethers.providers.P
 export const getCakeVaultContract = (signer?: ethers.Signer | ethers.providers.Provider) => {
   return getContract(cakeVaultAbi, getCakeVaultAddress(), signer)
 }
-export const getNortVaultContract = (signer?: ethers.Signer | ethers.providers.Provider) => {
-  return getContract(nortVaultAbi, getNortVaultAddress(), signer)
+export const getNortVaultContract = (id: number, signer?: ethers.Signer | ethers.providers.Provider) => {
+  const config = poolsConfig.find((pool) => pool.sousId === id)
+  return getContract(nortVaultAbi, getAddress(config.contractAddress), signer)
 }
 
 export const getPredictionsContract = (signer?: ethers.Signer | ethers.providers.Provider) => {

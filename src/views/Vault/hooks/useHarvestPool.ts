@@ -1,7 +1,7 @@
 import { useCallback } from 'react'
 import { useWeb3React } from '@web3-react/core'
 import { useAppDispatch } from 'state'
-import { updateUserBalance, updateUserPendingReward } from 'state/actions'
+import { updateUserBalance, updateUserPendingReward, updateUserEarnedRewardsBalance } from 'state/actions'
 import { harvestFarm } from 'utils/calls'
 import { BIG_ZERO } from 'utils/bigNumber'
 import getGasPrice from 'utils/getGasPrice'
@@ -51,6 +51,8 @@ const useHarvestPool = (sousId, isUsingBnb = false, isVault = false) => {
     }
     dispatch(updateUserPendingReward(sousId, account))
     dispatch(updateUserBalance(sousId, account))
+    dispatch(updateUserEarnedRewardsBalance(sousId, account))
+    
   }, [account, dispatch, isUsingBnb, masterChefContract, sousChefContract, sousId, isVault])
 
   return { onReward: handleHarvest }

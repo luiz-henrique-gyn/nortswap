@@ -56,6 +56,7 @@ const ExpandedFooter: React.FC<ExpandedFooterProps> = ({ pool, account }) => {
     contractAddress,
     sousId,
     isAutoVault,
+    userData: { earnedRewards },
   } = pool
 
   const tokenAddress = earningToken.address || ''
@@ -63,6 +64,7 @@ const ExpandedFooter: React.FC<ExpandedFooterProps> = ({ pool, account }) => {
   const cakeVaultContractAddress = getCakeVaultAddress()
   const isMetaMaskInScope = !!window.ethereum?.isMetaMask
   const isManualCakePool = sousId === 0
+  const formattedEarnedRewards = getBalanceNumber(earnedRewards, earningToken.decimals)
 
   const { shouldShowBlockCountdown, blocksUntilStart, blocksRemaining, hasPoolStarted, blocksToDisplay } =
     getPoolBlockInfo(pool, currentBlock)
@@ -91,6 +93,15 @@ const ExpandedFooter: React.FC<ExpandedFooterProps> = ({ pool, account }) => {
     placement: 'bottom',
   })
 
+  const earnedRewardsTooltipText = t('Total of rewards harvested to your wallet')
+  const {
+    targetRef: tagTargetRef,
+    tooltip: tagTooltip,
+    tooltipVisible: tagTooltipVisible,
+  } = useTooltip(earnedRewardsTooltipText, {
+    placement: 'bottom-start',
+  })
+
   return (
     <ExpandedWrapper flexDirection="column">
       <Flex mb="2px" justifyContent="space-between" alignItems="center">
@@ -107,6 +118,22 @@ const ExpandedFooter: React.FC<ExpandedFooterProps> = ({ pool, account }) => {
             <Skeleton width="90px" height="21px" />
           )}
           {totalStakedTooltipVisible && totalStakedTooltip}
+        </Flex>
+      </Flex>
+      <Flex mb="2px" justifyContent="space-between" alignItems="center">
+        <Text small>{t('Total rewards earned')}:</Text>
+        <Flex alignItems="flex-start">
+          {earnedRewards && earnedRewards.gte(0) ? (
+            <>
+              <Balance small value={formattedEarnedRewards} decimals={2} unit={` ${stakingToken.symbol}`} />
+              <span ref={tagTargetRef}>
+                <HelpIcon color="textSubtle" width="20px" ml="6px" mt="4px" />
+              </span>
+            </>
+          ) : (
+            <Skeleton width="90px" height="21px" />
+          )}
+          {tagTooltipVisible && tagTooltip}
         </Flex>
       </Flex>
       {stakingLimit && stakingLimit.gt(0) && (

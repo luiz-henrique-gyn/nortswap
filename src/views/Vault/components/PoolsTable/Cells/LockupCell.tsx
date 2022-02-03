@@ -27,7 +27,7 @@ const LockupCell: React.FC<LockupCellProps> = ({ pool }) => {
           {t('Lockup')}
         </Text>
         <Text fontSize="16px" textAlign="left">
-          {lockupPeriod}
+          {t(lockupPeriod)}
         </Text>
       </CellContent>
     </StyledCell>

@@ -10,6 +10,7 @@ type UserData =
       stakingTokenBalance: number | string
       stakedBalance: number | string
       pendingReward: number | string
+      earnedRewards: number | string
     }
 
 export const transformUserData = (userData: UserData) => {
@@ -18,6 +19,7 @@ export const transformUserData = (userData: UserData) => {
     stakingTokenBalance: userData ? new BigNumber(userData.stakingTokenBalance) : BIG_ZERO,
     stakedBalance: userData ? new BigNumber(userData.stakedBalance) : BIG_ZERO,
     pendingReward: userData ? new BigNumber(userData.pendingReward) : BIG_ZERO,
+    earnedRewards: userData ? new BigNumber(userData.earnedRewards) : BIG_ZERO,
   }
 }
 

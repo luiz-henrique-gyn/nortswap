@@ -698,6 +698,11 @@
         "type": "uint256"
       },
       {
+        "internalType": "uint256",
+        "name": "earnedRewards",
+        "type": "uint256"
+      },
+      {
         "internalType": "address",
         "name": "indicator",
         "type": "address"

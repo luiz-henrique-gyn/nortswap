@@ -1,5 +1,6 @@
 import poolsConfig from 'config/constants/pools'
 import sousChefABI from 'config/abi/sousChef.json'
+import nortVaultABI from 'config/abi/nortVault.json'
 import erc20ABI from 'config/abi/erc20.json'
 import multicall from 'utils/multicall'
 import { getMasterchefContract } from 'utils/contractHelpers'
@@ -12,6 +13,7 @@ import BigNumber from 'bignumber.js'
 const nonBnbPools = poolsConfig.filter((pool) => pool.stakingToken.symbol !== 'BNB')
 const bnbPools = poolsConfig.filter((pool) => pool.stakingToken.symbol === 'BNB')
 const nonMasterPools = poolsConfig.filter((pool) => pool.sousId !== 0)
+const vaultPools = poolsConfig.filter((pool) => pool.sousId > 245 && pool.isVault)
 const masterChefContract = getMasterchefContract()
 
 export const fetchPoolsAllowance = async (account) => {
@@ -91,4 +93,25 @@ export const fetchUserPendingRewards = async (account) => {
   const pendingReward = await masterChefContract.pendingCake('0', account)
 
   return { ...pendingRewards, 0: new BigNumber(pendingReward.toString()).toJSON() }
+}
+
+export const fetchUserEarnedRewards = async (account) => {
+  const calls = vaultPools.map((p) => ({
+    address: getAddress(p.contractAddress),
+    name: 'userInfo',
+    params: [account],
+  }))
+  const userInfo = await multicall(nortVaultABI, calls) 
+  const earnedRewards = vaultPools.reduce(
+    (acc, pool, index) => ({
+      ...acc,
+      [pool.sousId]: new BigNumber(userInfo[index].earnedRewards._hex).toJSON(),
+    }),
+    {},
+  )
+
+  // Cake / Cake pool
+  const { amount: masterPoolAmount } = await masterChefContract.userInfo('0', account)
+
+  return { ...earnedRewards, 0: new BigNumber(masterPoolAmount.toString()).toJSON() }
 }

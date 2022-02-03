@@ -44,7 +44,24 @@ const pools: SerializedPoolConfig[] = [
     lockupPeriod: '1 YEAR',
     tokenPerBlock: '0.06',
     sortOrder: 1,
+    isFinished: true,
+    isVault: true,
+  },
+  {
+    sousId: 246,
+    stakingToken: serializedTokens.nt,
+    earningToken: serializedTokens.nt,
+    contractAddress: {
+      56: '0x5982309CDcdC84e728D0CF5FaF991c06208c147d',
+    },
+    poolCategory: PoolCategory.CORE,
+    harvest: true,
+    indicationTokenPerBlock: '0.0002',
+    lockupPeriod: '1 YEAR',
+    tokenPerBlock: '0.06',
+    sortOrder: 1,
     isFinished: false,
+    isVault: true,
   },
 ]
 

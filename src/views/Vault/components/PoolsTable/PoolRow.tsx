@@ -13,7 +13,7 @@ import ActionPanel from './ActionPanel/ActionPanel'
 import AutoEarningsCell from './Cells/AutoEarningsCell'
 import AutoAprCell from './Cells/AutoAprCell'
 import LockupCell from './Cells/LockupCell'
-import IndicationCell from './Cells/IndicationCell'
+import TotalEarnedCell from './Cells/TotalEarnedCell'
 
 interface PoolRowProps {
   pool: DeserializedPool
@@ -42,7 +42,7 @@ const PoolRow: React.FC<PoolRowProps> = ({ pool, account, userDataLoaded }) => {
       <StyledRow role="row" onClick={toggleExpanded}>
         <NameCell pool={pool} />
         {isLargerScreen && <LockupCell pool={pool} />}
-        {isLargerScreen && <IndicationCell pool={pool} />}
+        {isLargerScreen && <TotalEarnedCell pool={pool} />}
         {pool.isAutoVault ? (
           <AutoEarningsCell pool={pool} account={account} userDataLoaded={userDataLoaded} />
         ) : (

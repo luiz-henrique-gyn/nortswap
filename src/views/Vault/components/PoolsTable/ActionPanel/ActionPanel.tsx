@@ -131,6 +131,7 @@ const ActionPanel: React.FC<ActionPanelProps> = ({ account, pool, userDataLoaded
     contractAddress,
     userData,
     isAutoVault,
+    userData: { earnedRewards },
   } = pool
   const { t } = useTranslation()
   const poolContractAddress = getAddress(contractAddress)
@@ -157,6 +158,7 @@ const ActionPanel: React.FC<ActionPanelProps> = ({ account, pool, userDataLoaded
   const poolStakingTokenBalance = isAutoVault
     ? cakeAsBigNumber.plus(stakingTokenBalance)
     : stakedBalance.plus(stakingTokenBalance)
+  const formattedEarnedRewards = getBalanceNumber(earnedRewards, earningToken.decimals)
 
   const performanceFeeAsDecimal = performanceFee && performanceFee / 100
   const isManualCakePool = sousId === 0
@@ -184,6 +186,15 @@ const ActionPanel: React.FC<ActionPanelProps> = ({ account, pool, userDataLoaded
   const autoTooltipText = t(
     'Any funds you stake in this pool will be automagically harvested and restaked (compounded) for you.',
   )
+
+  const earnedRewardsTooltipText = t('Total of rewards harvested to your wallet')
+  const {
+    targetRef: tagTargetRewardRef,
+    tooltip: tagTooltipReward,
+    tooltipVisible: tagTooltipRewardVisible,
+  } = useTooltip(earnedRewardsTooltipText, {
+    placement: 'bottom-start',
+  })
 
   const {
     targetRef: tagTargetRef,
@@ -233,7 +244,7 @@ const ActionPanel: React.FC<ActionPanelProps> = ({ account, pool, userDataLoaded
   const lockupRow = (
     <Flex justifyContent="space-between" alignItems="center" mb="8px">
       <Text>{t('Lockup')}:</Text>
-      <Text>{pool.lockupPeriod}</Text>
+      <Text>{t(pool.lockupPeriod)}</Text>
     </Flex>
   )
 
@@ -256,13 +267,33 @@ const ActionPanel: React.FC<ActionPanelProps> = ({ account, pool, userDataLoaded
     </Flex>
   )
 
+  const totalEarnedRewardsRow = (
+    <Flex mb="8px" justifyContent="space-between" alignItems="center">
+      <Text maxWidth={['50px', '100%']}>{t('Total rewards earned')}:</Text>
+      <Flex alignItems="center">
+        {earnedRewards && earnedRewards.gte(0) ? (
+          <>
+            <Balance fontSize="16px" value={formattedEarnedRewards} decimals={2} unit={` ${stakingToken.symbol}`} />
+            <span ref={tagTargetRewardRef}>
+              <HelpIcon color="textSubtle" width="20px" ml="6px" mt="4px" />
+            </span>
+          </>
+        ) : (
+          <Skeleton width="56px" height="16px" />
+        )}
+        {tagTooltipRewardVisible && tagTooltipReward}
+      </Flex>
+    </Flex>
+  )
+
   return (
     <StyledActionPanel expanded={expanded}>
       <InfoSection>
         {maxStakeRow}
         {(isXs || isSm) && aprRow}
-        {(isXs || isSm) && lockupRow}
+        {(isXs || isSm || isMd) && lockupRow}
         {(isXs || isSm || isMd) && totalStakedRow}
+        {(isXs || isSm || isMd) && totalEarnedRewardsRow}
         {shouldShowBlockCountdown && blocksRow}
         <Flex mb="8px" justifyContent={['flex-end', 'flex-end', 'flex-start']}>
           <LinkExternal href={`${BASE_BSC_SCAN_URL}/token/${stakingToken.address}`} bold={false}>

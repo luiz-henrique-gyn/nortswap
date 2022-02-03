@@ -93,6 +93,7 @@ interface PoolConfigBaseProps {
   sortOrder?: number
   harvest?: boolean
   isFinished?: boolean
+  isVault?: boolean
   enableEmergencyWithdraw?: boolean
 }
 

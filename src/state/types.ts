@@ -77,6 +77,7 @@ export interface DeserializedPool extends DeserializedPoolConfig, CorePoolProps 
     stakingTokenBalance: BigNumber
     stakedBalance: BigNumber
     pendingReward: BigNumber
+    earnedRewards: BigNumber
   }
 }
 
@@ -88,6 +89,7 @@ export interface SerializedPool extends SerializedPoolConfig, CorePoolProps {
     stakingTokenBalance: SerializedBigNumber
     stakedBalance: SerializedBigNumber
     pendingReward: SerializedBigNumber
+    earnedRewards: SerializedBigNumber
   }
 }
 
