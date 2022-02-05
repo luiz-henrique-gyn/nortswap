@@ -142,7 +142,7 @@ export const updateUserBalance =
 export const updateUserEarnedRewardsBalance =
   (sousId: number, account: string): AppThunk =>
   async (dispatch) => {
-    const earnedRewards = await fetchUserEarnedRewards(account) 
+    const earnedRewards = await fetchUserEarnedRewards(account)
     dispatch(updatePoolsUserData({ sousId, field: 'earnedRewards', value: earnedRewards[sousId] }))
   }
 

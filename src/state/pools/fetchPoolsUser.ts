@@ -101,7 +101,7 @@ export const fetchUserEarnedRewards = async (account) => {
     name: 'userInfo',
     params: [account],
   }))
-  const userInfo = await multicall(nortVaultABI, calls) 
+  const userInfo = await multicall(nortVaultABI, calls)
   const earnedRewards = vaultPools.reduce(
     (acc, pool, index) => ({
       ...acc,

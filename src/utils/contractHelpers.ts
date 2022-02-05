@@ -29,7 +29,7 @@ import {
   getNftMarketAddress,
   getNftSaleAddress,
   getPancakeSquadAddress,
-  getLockerAddress, 
+  getLockerAddress,
 } from 'utils/addressHelpers'
 
 // ABI

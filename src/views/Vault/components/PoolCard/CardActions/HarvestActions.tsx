@@ -14,6 +14,7 @@ interface HarvestActionsProps {
   earningTokenPrice: number
   isBnbPool: boolean
   isLoading?: boolean
+  isVault?: boolean
 }
 
 const HarvestActions: React.FC<HarvestActionsProps> = ({
@@ -23,6 +24,7 @@ const HarvestActions: React.FC<HarvestActionsProps> = ({
   isBnbPool,
   earningTokenPrice,
   isLoading = false,
+  isVault = false,
 }) => {
   const { t } = useTranslation()
   const earningTokenBalance = getBalanceNumber(earnings, earningToken.decimals)
@@ -42,6 +44,7 @@ const HarvestActions: React.FC<HarvestActionsProps> = ({
       earningsDollarValue={earningTokenDollarBalance}
       sousId={sousId}
       isBnbPool={isBnbPool}
+      isVault={isVault}
       isCompoundPool={isCompoundPool}
     />,
   )

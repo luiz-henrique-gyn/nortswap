@@ -52,7 +52,6 @@ const useHarvestPool = (sousId, isUsingBnb = false, isVault = false) => {
     dispatch(updateUserPendingReward(sousId, account))
     dispatch(updateUserBalance(sousId, account))
     dispatch(updateUserEarnedRewardsBalance(sousId, account))
-    
   }, [account, dispatch, isUsingBnb, masterChefContract, sousChefContract, sousId, isVault])
 
   return { onReward: handleHarvest }

@@ -20,7 +20,7 @@ interface CardActionsProps {
 }
 
 const CardActions: React.FC<CardActionsProps> = ({ pool, stakedBalance }) => {
-  const { sousId, stakingToken, earningToken, harvest, poolCategory, userData, earningTokenPrice } = pool
+  const { sousId, stakingToken, earningToken, harvest, poolCategory, userData, earningTokenPrice, isVault } = pool
   // Pools using native BNB behave differently than pools using a token
   const isBnbPool = poolCategory === PoolCategory.BINANCE
   const { t } = useTranslation()
@@ -51,6 +51,7 @@ const CardActions: React.FC<CardActionsProps> = ({ pool, stakedBalance }) => {
               earningTokenPrice={earningTokenPrice}
               isBnbPool={isBnbPool}
               isLoading={isLoading}
+              isVault={isVault}
             />
           </>
         )}
