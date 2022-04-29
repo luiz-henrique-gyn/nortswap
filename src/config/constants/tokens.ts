@@ -111,6 +111,14 @@ export const mainnetTokens = {
     'Binance-Peg USD Coin',
     'https://www.centre.io/usdc',
   ),
+  ntbnb: new Token(
+    MAINNET,
+    '0x7e7f84a620a5f5d49d9dc6e32e0550be82e61225',
+    18,
+    'NT-BNB',
+    'NT-BNB LPs',
+    'https://nortswap.finance',
+  ),
 }
 
 export const testnetTokens = {

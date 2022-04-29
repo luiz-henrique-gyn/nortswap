@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react'
 import styled from 'styled-components'
+import { mainnetTokens } from 'config/constants/tokens'
 import { CurrencyAmount, JSBI, Token, Trade } from '@pancakeswap/sdk'
 import {
   Button,
@@ -33,7 +34,7 @@ import ProgressSteps from './components/ProgressSteps'
 import { AppBody } from '../../components/App'
 import ConnectWalletButton from '../../components/ConnectWalletButton'
 
-import { INITIAL_ALLOWED_SLIPPAGE } from '../../config/constants'
+import { INITIAL_ALLOWED_SLIPPAGE, MAX_NT_EXACT } from '../../config/constants'
 import useActiveWeb3React from '../../hooks/useActiveWeb3React'
 import { useCurrency, useAllTokens } from '../../hooks/Tokens'
 import { ApprovalState, useApproveCallbackFromTrade } from '../../hooks/useApproveCallback'
@@ -142,9 +143,13 @@ export default function Swap({ history }: RouteComponentProps) {
 
   const handleTypeInput = useCallback(
     (value: string) => {
-      onUserInput(Field.INPUT, value)
+      if (inputCurrencyId === mainnetTokens.nt.address && parseFloat(value) > MAX_NT_EXACT) {
+        onUserInput(Field.INPUT, MAX_NT_EXACT.toString())
+      } else {
+        onUserInput(Field.INPUT, value)
+      }
     },
-    [onUserInput],
+    [onUserInput, inputCurrencyId],
   )
   const handleTypeOutput = useCallback(
     (value: string) => {
@@ -194,7 +199,6 @@ export default function Swap({ history }: RouteComponentProps) {
 
   const maxAmountInput: CurrencyAmount | undefined = maxAmountSpend(currencyBalances[Field.INPUT])
   const atMaxAmountInput = Boolean(maxAmountInput && parsedAmounts[Field.INPUT]?.equalTo(maxAmountInput))
-
   // the callback to execute the swap
   const { callback: swapCallback, error: swapCallbackError } = useSwapCallback(trade, allowedSlippage, recipient)
 
@@ -285,10 +289,17 @@ export default function Swap({ history }: RouteComponentProps) {
   )
 
   const handleMaxInput = useCallback(() => {
-    if (maxAmountInput) {
+    if (maxAmountInput && inputCurrencyId !== mainnetTokens.nt.address) {
+      onUserInput(Field.INPUT, maxAmountInput.toExact())
+    } else if (inputCurrencyId === mainnetTokens.nt.address) {
+      onUserInput(
+        Field.INPUT,
+        parseFloat(maxAmountInput.toExact()) > MAX_NT_EXACT ? MAX_NT_EXACT.toString() : maxAmountInput.toExact(),
+      )
+    } else {
       onUserInput(Field.INPUT, maxAmountInput.toExact())
     }
-  }, [maxAmountInput, onUserInput])
+  }, [maxAmountInput, onUserInput, inputCurrencyId])
 
   const handleOutputSelect = useCallback(
     (outputCurrency) => {

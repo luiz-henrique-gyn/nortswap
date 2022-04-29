@@ -21,8 +21,8 @@ const farms: SerializedFarmConfig[] = [
     pid: 251,
     lpSymbol: 'NT-BNB LP',
     lpAddresses: {
-      97: '0x3ed8936cAFDF85cfDBa29Fbe5940A5b0524824F4',
-      56: '0xd425ff5170B02af60D859Bda1C004C1fd836B543',
+      97: '0x7e7f84a620a5f5d49d9dc6e32e0550be82e61225',
+      56: '0x7e7f84a620a5f5d49d9dc6e32e0550be82e61225',
     },
     token: serializedTokens.nt,
     quoteToken: serializedTokens.wbnb,
