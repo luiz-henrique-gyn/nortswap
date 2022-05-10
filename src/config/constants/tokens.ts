@@ -111,7 +111,7 @@ export const mainnetTokens = {
     'Binance-Peg USD Coin',
     'https://www.centre.io/usdc',
   ),
-  "cake-lp": new Token(
+  'cake-lp': new Token(
     MAINNET,
     '0x7E7F84a620a5f5d49d9dC6e32e0550bE82e61225',
     18,
