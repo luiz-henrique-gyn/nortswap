@@ -63,19 +63,19 @@ const pools: SerializedPoolConfig[] = [
     isFinished: false,
     isVault: true,
   },
-  // {
-  //   sousId: 247,
-  //   stakingToken: serializedTokens.ntbnb,
-  //   earningToken: serializedTokens.nt,
-  //   contractAddress: {
-  //     56: '0x1F8233Ea0a59f7EfF3304147F1d96A7d73AFC7E9',
-  //   },
-  //   poolCategory: PoolCategory.CORE,
-  //   harvest: true,
-  //   tokenPerBlock: '0.06',
-  //   sortOrder: 1,
-  //   isFinished: false,
-  // },
+  {
+    sousId: 247,
+    stakingToken: serializedTokens['cake-lp'],
+    earningToken: serializedTokens.nt,
+    contractAddress: {
+      56: '0x311251741Ae63a8Fda31AD968e0577BDAc64394A',
+    },
+    poolCategory: PoolCategory.CORE,
+    harvest: true,
+    tokenPerBlock: '0.02',
+    sortOrder: 1,
+    isFinished: false,
+  },
 ]
 
 export default pools
