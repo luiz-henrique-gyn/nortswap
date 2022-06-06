@@ -94,6 +94,7 @@ interface PoolConfigBaseProps {
   harvest?: boolean
   isFinished?: boolean
   isVault?: boolean
+  isFarm?: boolean
   enableEmergencyWithdraw?: boolean
 }
 

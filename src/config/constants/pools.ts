@@ -75,6 +75,7 @@ const pools: SerializedPoolConfig[] = [
     tokenPerBlock: '0.02',
     sortOrder: 1,
     isFinished: false,
+    isFarm: true,
   },
 ]
 
