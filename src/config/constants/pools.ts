@@ -77,6 +77,22 @@ const pools: SerializedPoolConfig[] = [
     isFinished: false,
     isFarm: true,
   },
+  {
+    sousId: 248,
+    stakingToken: serializedTokens.nt,
+    earningToken: serializedTokens.nt,
+    contractAddress: {
+      56: '0xDefDfFae4ba7879312a21eD7bE7B8De722992EE2',
+    },
+    poolCategory: PoolCategory.CORE,
+    harvest: true,
+    indicationTokenPerBlock: '0',
+    lockupPeriod: '5 YEAR',
+    tokenPerBlock: '0.009',
+    sortOrder: 1,
+    isFinished: false,
+    isVault: true,
+  },
 ]
 
 export default pools
