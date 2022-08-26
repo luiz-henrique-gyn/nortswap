@@ -13,7 +13,7 @@ import BigNumber from 'bignumber.js'
 const nonBnbPools = poolsConfig.filter((pool) => pool.stakingToken.symbol !== 'BNB')
 const bnbPools = poolsConfig.filter((pool) => pool.stakingToken.symbol === 'BNB')
 const nonMasterPools = poolsConfig.filter((pool) => pool.sousId !== 0)
-const vaultPools = poolsConfig.filter((pool) => pool.sousId > 245 && pool.isVault)
+const vaultPools = poolsConfig.filter((pool) => pool.sousId > 245 && pool.sousId < 300 && pool.isVault)
 const masterChefContract = getMasterchefContract()
 
 export const fetchPoolsAllowance = async (account) => {

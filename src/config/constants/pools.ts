@@ -78,7 +78,7 @@ const pools: SerializedPoolConfig[] = [
     isFarm: true,
   },
   {
-    sousId: 248,
+    sousId: 301,
     stakingToken: serializedTokens.nt,
     earningToken: serializedTokens.nt,
     contractAddress: {
@@ -86,8 +86,8 @@ const pools: SerializedPoolConfig[] = [
     },
     poolCategory: PoolCategory.CORE,
     harvest: true,
-    indicationTokenPerBlock: '0',
     lockupPeriod: '5 YEAR',
+    indicationTokenPerBlock: '0',
     tokenPerBlock: '0.009',
     sortOrder: 1,
     isFinished: false,

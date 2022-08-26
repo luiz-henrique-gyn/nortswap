@@ -11,10 +11,10 @@
     deep-eql "^0.1.3"
     keypather "^1.10.2"
 
-"@allnext/uikit@0.59.7":
-  version "0.59.7"
-  resolved "https://registry.yarnpkg.com/@allnext/uikit/-/uikit-0.59.7.tgz#86207f41277796c37f971215ce9dfb1daa168359"
-  integrity sha512-lKoc3Pud2spWw1YQVzk61rX539YioJtes3jHqGX5Xytb2wKw58I9L0cJ35hxq1SpVfTJN4N3vMKzpZObjLbvhw==
+"@allnext/uikit@0.59.9":
+  version "0.59.9"
+  resolved "https://registry.yarnpkg.com/@allnext/uikit/-/uikit-0.59.9.tgz#3f9639c7fb460bcb903844a2967d7591a25493c0"
+  integrity sha512-enNrkTUrg5jP1NWMIodeNq17dUQY3je9tK6vjwYu5Rjg1gDuUEug+n7+QuJQazZB0GzouuhExWZR2VcbzOX52g==
   dependencies:
     "@popperjs/core" "^2.9.2"
     "@types/lodash" "^4.14.168"

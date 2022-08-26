@@ -6,7 +6,7 @@ import { stakeFarm } from 'utils/calls'
 import BigNumber from 'bignumber.js'
 import { DEFAULT_TOKEN_DECIMAL, DEFAULT_GAS_LIMIT } from 'config'
 import { BIG_TEN } from 'utils/bigNumber'
-import { useMasterchef, useNortVaultContract } from 'hooks/useContract'
+import { useMasterchef, useNortVaultContract, useSousChef } from 'hooks/useContract'
 import getGasPrice from 'utils/getGasPrice'
 import { Contract, ethers } from 'ethers'
 
@@ -45,6 +45,7 @@ const useStakePool = (sousId: number, isUsingBnb = false) => {
   const { account } = useWeb3React()
   const masterChefContract = useMasterchef()
   const nortVaultContract = useNortVaultContract(sousId)
+  const sousChefContract = useSousChef(sousId)
 
   const handleStake = useCallback(
     async (amount: string, decimals: number, indicationAddress?: string | boolean) => {
@@ -52,14 +53,16 @@ const useStakePool = (sousId: number, isUsingBnb = false) => {
         await stakeFarm(masterChefContract, 0, amount)
       } else if (isUsingBnb) {
         await sousStakeBnb(nortVaultContract, amount)
-      } else {
+      } else if (sousId < 300) {
         await sousStake(nortVaultContract, amount, decimals, indicationAddress)
+      } else if (sousId > 300) {
+        await sousStakeBnb(sousChefContract, amount)
       }
       dispatch(updateUserStakedBalance(sousId, account))
       dispatch(updateUserBalance(sousId, account))
       dispatch(updateUserEarnedRewardsBalance(sousId, account))
     },
-    [account, dispatch, isUsingBnb, masterChefContract, nortVaultContract, sousId],
+    [account, dispatch, isUsingBnb, masterChefContract, nortVaultContract, sousId, sousChefContract],
   )
 
   return { onStake: handleStake }
