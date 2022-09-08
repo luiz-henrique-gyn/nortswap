@@ -249,7 +249,7 @@ const Locker = () => {
               <Text>- {t('Click on "Approve" to allow the contract to transfer your tokens')}</Text>
               <Text>- {t('Click on "Deposit" to lock your tokens into locker contract')}</Text>
               <Heading mt="24px">{t('Fees')}</Heading>
-              <Text>- {t('0.05 BNB to lock (used to BUY NT and DISTRIBUTE it as reward)')}</Text>
+              <Text>- {t('0.05 BNB to lock (used to BUY and BURN 🔥 $NT)')}</Text>
               <Heading mt="24px">{t('Considerations')}</Heading>
               <Text>- {t('You will not be able to withdraw your tokens before the unlock time')}</Text>
               <Text>

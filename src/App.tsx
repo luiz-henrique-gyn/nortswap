@@ -1,5 +1,7 @@
-import React, { lazy } from 'react'
+import React, { lazy, useMemo } from 'react'
 import { Router, Redirect, Route, Switch } from 'react-router-dom'
+import useActiveWeb3React from 'hooks/useActiveWeb3React'
+import { BLOCKED_ADDRESSES } from 'config/constants'
 import { ResetCSS } from '@allnext/uikit'
 import BigNumber from 'bignumber.js'
 import useEagerConnect from 'hooks/useEagerConnect'
@@ -54,7 +56,11 @@ const App: React.FC = () => {
   useScrollOnRouteChange()
   useUserAgent()
   useInactiveListener()
-
+  const { account } = useActiveWeb3React()
+  const blocked: boolean = useMemo(() => Boolean(account && BLOCKED_ADDRESSES.indexOf(account) !== -1), [account])
+  if (blocked) {
+    return <div>Atividade suspeita e maliciosa detectada. Carteira bloqueada.</div>
+  }
   return (
     <Router history={history}>
       <ResetCSS />

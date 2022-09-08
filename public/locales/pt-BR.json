@@ -19,7 +19,7 @@
   "Input your token or liquidity pair address, amount of tokens to lock, withdrawer address and when tokens will become unlocked": "Insira o endereço do token ou par de liquidez, quantidade de tokens a bloquear, endereço de saque e quando os tokens serão desbloqueados",
   "Click on \"Approve\" to allow the contract to transfer your tokens": "Clique em \"Aprovar\" para permitir que o contrato transfira seus tokens",
   "Click on \"Deposit\" to lock your tokens into locker contract": "Clique em \"Depositar\" para bloquar seus tokens no contrato inteligente",
-  "0.05 BNB to lock (used to BUY NT and DISTRIBUTE it as reward)": "0.05 BNB para bloquear (usado para COMPRAR NT e DISTRIBUIR como recompensa)",
+  "0.05 BNB to lock (used to BUY and BURN 🔥 $NT)": "0.05 BNB para bloquear (usado para COMPRAR e QUEIMAR 🔥 $NT)",
   "Locker contract address:": "Endereço do contrato inteligente:",
   "Fees": "Taxas",
   "Considerations": "Considerações",
