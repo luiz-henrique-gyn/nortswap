@@ -88,7 +88,7 @@ const pools: SerializedPoolConfig[] = [
     harvest: true,
     lockupPeriod: '5 YEAR',
     indicationTokenPerBlock: '0',
-    tokenPerBlock: '0.009',
+    tokenPerBlock: '0.02',
     sortOrder: 1,
     isFinished: false,
     isVault: true,
